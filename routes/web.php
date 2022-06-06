@@ -16,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/pembelian', [\App\Http\Controllers\PembelianController::class, 'index'])->name('pembelian.index');
+Route::post('/pembelian/fetch', [\App\Http\Controllers\PembelianController::class, 'fetch'])->name('pembelian.fetch');
+
 Route::get('penjualan/{id}/tambah', [\App\Http\Controllers\PenjualanController::class, 'tambah'])->name('penjualan.tambah');
 Route::delete('penjualan/hapus', [\App\Http\Controllers\PenjualanController::class, 'hapus'])->name('penjualan.hapus');
 Route::patch('penjualan/update', [\App\Http\Controllers\PenjualanController::class, 'update'])->name('penjualan.update');
-Route::get('/penjualan', [\App\Http\Controllers\PenjualanController::class,'index'])->name('penjualan.index');
+Route::get('/penjualan', [\App\Http\Controllers\PenjualanController::class, 'index'])->name('penjualan.index');
 Route::delete('barang.hapus', [\App\Http\Controllers\BarangController::class, 'hapus'])->name('barang.hapus');
 Route::put('barang.ubah', [\App\Http\Controllers\BarangController::class, 'ubah'])->name('barang.ubah');
 Route::delete('pelanggan.hapus', [\App\Http\Controllers\PelangganControler::class, 'hapus'])->name('pelanggan.hapus');
@@ -32,4 +36,3 @@ Route::resource('/kategori', \App\Http\Controllers\KategoriController::class);
 Route::resource('/supplier', \App\Http\Controllers\SupplierController::class);
 Route::resource('/pelanggan', \App\Http\Controllers\PelangganControler::class);
 Route::resource('/barang', \App\Http\Controllers\BarangController::class);
-
