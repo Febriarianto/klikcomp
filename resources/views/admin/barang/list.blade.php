@@ -69,7 +69,7 @@
                     <div class="row">
                         <div class="form-group col-4">
                             <label>Satuan</label>
-                            <select class="form-control" name="satuan" id="satuan" required>
+                            <select class="form-control" name="satuan" required>
                                 <option value="">.: Pilih :.</option>
                                 <option value="Pcs">Pcs</option>
                                 <option value="Unit">Unit</option>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="form-group col-4">
                             <label>Kategori</label>
-                            <select class="form-control" name="kategori" id="kategori" required>
+                            <select class="form-control" name="kategori" required>
                                 <option value="">.: Pilih :.</option>
                                 @foreach ($kategori as $k)
                                 <option value="{{$k->id}}">{{$k->nama_kategori}}</option>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="form-group col-4">
                             <label>Supplier</label>
-                            <select class="form-control" name="supplier" id="supplier" required>
+                            <select class="form-control" name="supplier" required>
                                 <option value="">.: Pilih :.</option>
                                 @foreach ($supplier as $s)
                                 <option value="{{$s->id}}">{{$s->nama_supplier}}</option>
@@ -133,7 +133,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('barang.ubah')}}" method="POST" id="eform">
+                <form action="" method="POST" id="formEdit">
                     @csrf
                     @method('PUT')
                     <input type="hidden" class="form-control" name="id" id="idkt">
@@ -268,10 +268,17 @@
             $("#nama").val(data.nama_barang);
             $("#barcode").val(data.barcode);
             $("#keterangan").val(data.keterangan);
-            $("#hargajual").val(data.harga_jual).mask('0,000,000,000', {reverse :true});
-            $("#hargabeli").val(data.harga_beli).mask('0,000,000,000', {reverse :true});;
+            $("#hargajual").val(data.harga_jual).mask('0,000,000,000', {
+                reverse: true
+            });
+            $("#hargabeli").val(data.harga_beli).mask('0,000,000,000', {
+                reverse: true
+            });
+            $('#kategori').val(data.id_kategori);
+            $('#supplier').val(data.id_supplier);
+            $('#satuan').val(data.satuan);
             $('#modal-edit').modal('show');
-        })
+        });
     });
     $(".passingHAPUS").click(function() {
         var ids = $(this).attr('data-id');

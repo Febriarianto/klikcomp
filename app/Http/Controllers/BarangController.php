@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -57,5 +58,9 @@ class BarangController extends Controller
     {
         $data = DB::table('barang')->where('id', $id)->first();
         return response()->json($data, 200);
+    }
+    public function update(Barang $barang)
+    {
+        dd($barang);
     }
 }

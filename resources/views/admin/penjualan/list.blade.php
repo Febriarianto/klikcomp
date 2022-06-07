@@ -61,9 +61,9 @@
                     @php $total += $p['harga'] * $p['jumlah'] @endphp
                     <tr class="cart" data-id="{{ $p['id'] }}">
                         <td>{{$p['nama']}}</td>
-                        <td>{{number_format($p['harga'])}}</td>
+                        <td>Rp. {{number_format($p['harga'])}}</td>
                         <td data-th="jumlah"><input type="number" value="{{$p['jumlah']}}" class="jumlah update-cart" min="1"></td>
-                        <td><span class="subtotal">{{ $p['jumlah'] * $p['harga']}}</span></td>
+                        <td><span class="subtotal">Rp. {{ number_format($p['jumlah'] * $p['harga'])}}</span></td>
                         <td><button class="btn btn-danger remove-cart"><i class="fas fa-trash"></i></button></td>
                     </tr>
                     @endforeach
@@ -80,7 +80,7 @@
             </div>
             <div class="form-group">
                 <label>Total Transaksi</label>
-                <input type="text" class="form-control" name="total" id="total">
+                <input type="text" class="form-control" name="total" id="total" value="Rp. {{number_format($total)}}">
             </div>
             <div class="form-group">
                 <label>Uang Bayar</label>
@@ -199,16 +199,6 @@
                 window.location.reload();
             }
         });
-    });
-
-    $(function() {
-        var total = 0;
-        $(".cart .subtotal").each(function() {
-            var value = ($(this).text() != "") ? parseFloat($(this).text()) : 0;
-            total += value;
-        })
-        $("#total").val('Rp. ' + total.toFixed())
-        console.log(total)
     });
 
     $(".remove-cart").click(function(e) {
