@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Route::get('/pembelian', [\App\Http\Controllers\PembelianController::class, 'index'])->name('pembelian.index');
 Route::post('/pembelian/fetch', [\App\Http\Controllers\PembelianController::class, 'fetch'])->name('pembelian.fetch');
+Route::post('/pembelian/tambah', [\App\Http\Controllers\PembelianController::class, 'tambah'])->name('pembelian.tambah');
+Route::delete('pembelian/hapus', [\App\Http\Controllers\PembelianController::class, 'hapus'])->name('pembelian.hapus');
+Route::patch('pembelian/update', [\App\Http\Controllers\PembelianController::class, 'update'])->name('pembelian.update');
 
 Route::get('penjualan/{id}/tambah', [\App\Http\Controllers\PenjualanController::class, 'tambah'])->name('penjualan.tambah');
 Route::delete('penjualan/hapus', [\App\Http\Controllers\PenjualanController::class, 'hapus'])->name('penjualan.hapus');
