@@ -39,3 +39,9 @@ Route::resource('/kategori', \App\Http\Controllers\KategoriController::class);
 Route::resource('/supplier', \App\Http\Controllers\SupplierController::class);
 Route::resource('/pelanggan', \App\Http\Controllers\PelangganControler::class);
 Route::resource('/barang', \App\Http\Controllers\BarangController::class);
+
+Route::get('/detail', [\App\Http\Controllers\HomeController::class, 'detail'])->name('home.detail');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
