@@ -9,12 +9,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="images p-3">
-                            <div class="text-center p-4"> <img id="main-image" src="{{asset('image/1.jpg')}}" width="250" /> </div>
+                            <div class="text-center p-4">
+                                @php if ($barang->gambar == "") {
+                                $text = "null.png";
+                                } else {
+                                $text = $barang->gambar;
+                                } @endphp
+                                <img id="main-image" src="{{ Storage::url('public/gambar_barang/').$text}}" width="350" height="250" />
+                            </div>
                             <div class="thumbnail text-center">
-                                <img onclick="change_image(this)" src="{{asset('image/1.jpg')}}" width="70">
-                                <img onclick="change_image(this)" src="{{asset('image/2.jpg')}}" width="70">
-                                <img onclick="change_image(this)" src="{{asset('image/3.jpg')}}" width="70">
-                                <img onclick="change_image(this)" src="{{asset('image/4.jpg')}}" width="70">
+                                @foreach ($data_img as $g)
+                                <img onclick="change_image(this)" src="{{Storage::url('public/gambar_barang/').$g->gambar}}" width="70">
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -23,17 +29,17 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="{{ URL::previous() }}"><i class="fas fa-arrow-left"></i></a>
                             </div>
-                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">Orianz</span>
-                                <h5 class="text-uppercase">Men's slim fit t-shirt</h5>
-                                <div class="price d-flex flex-row align-items-center"> <span class="act-price">$20</span>
-                                    <div class="ml-2"> <small class="dis-price">$59</small> <span>40% OFF</span> </div>
+                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"></span>
+                                <h5 class="text-uppercase">{{$barang->nama_barang}}</h5>
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price">Rp. {{number_format($barang->harga_jual)}}</span>
+                                    <div class="ml-2"> <small class="dis-price"></small> <span></span> </div>
                                 </div>
                             </div>
-                            <p class="about">Shop from a wide range of t-shirt from orianz. Pefect for your everyday use, you could pair it with a stylish pair of jeans or trousers complete the look.</p>
+                            <p class="about">{{$barang->keterangan}}</p>
                             <div class="sizes mt-5">
-                                <h6 class="text-uppercase">Size</h6> <label class="radio"> <input type="radio" name="size" value="S" checked> <span>S</span> </label> <label class="radio"> <input type="radio" name="size" value="M"> <span>M</span> </label> <label class="radio"> <input type="radio" name="size" value="L"> <span>L</span> </label> <label class="radio"> <input type="radio" name="size" value="XL"> <span>XL</span> </label> <label class="radio"> <input type="radio" name="size" value="XXL"> <span>XXL</span> </label>
+                                <h6 class="text-uppercase"></h6> <label class="radio"></label>
                             </div>
-                            <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+                            <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button></div>
                         </div>
                     </div>
                 </div>

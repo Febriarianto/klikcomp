@@ -75,7 +75,11 @@
                             </div>
                             <!-- Message End -->
                         </a>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                             <!-- Message Start -->
                             <div class="media">
                                 <div class="media-body">

@@ -24,6 +24,32 @@
                                 <th>Daftar Barang</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <td>
+                                @foreach ($barang as $b)
+                                @php if ($b->gambar == "") {
+                                $text = "null.png";
+                                } else {
+                                $text = $b->gambar;
+                                } @endphp
+                                <div class="card">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <img src="{{Storage::url('public/gambar_barang/').$text}}" class="card-img-top" alt="...">
+                                        </div>
+                                        <div class="col-8 my-3">
+                                            <h5 class="card-title">{{$b->nama_barang}}</h5>
+                                            <p class="card-text">{{$b->keterangan}}</p>
+                                        </div>
+                                        <div class="col-2 mt-4">
+                                            <a href="{{route('tamu.detail', $b->id)}}" class="btn btn-primary">Detail</a>
+                                            <a href="" class="btn btn-success">Add Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </td>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -41,13 +67,6 @@
             "searching": true,
             "lengthChange": false,
             "info": false,
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('welcome') }}",
-            columns: [{
-                data: 'data_barang',
-                name: 'data_barang'
-            }, ],
         });
     });
 </script>

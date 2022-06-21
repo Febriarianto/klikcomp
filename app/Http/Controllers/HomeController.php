@@ -25,8 +25,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function detail()
+    public function adminHome()
     {
-        return view('detail');
+        $judul = "Klik-Comp";
+        return view('admin.index', compact('judul'));
     }
 }

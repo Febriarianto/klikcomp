@@ -17,7 +17,7 @@ class Barang extends Model
         'barcode',
         'harga_jual',
         'harga_beli',
-        'stok',
+        'stock',
         'id_kategori',
         'id_supplier'
     ];
