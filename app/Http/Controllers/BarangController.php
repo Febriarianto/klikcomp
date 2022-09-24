@@ -166,4 +166,9 @@ class BarangController extends Controller
         }
         return redirect()->route('barang.index')->with('success', 'Berhasil di Update');
     }
+    public function cari($id)
+    {
+        $data = Barang::where('id', $id)->first();
+        return response()->json($data, 200);
+    }
 }

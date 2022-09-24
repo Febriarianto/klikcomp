@@ -34,7 +34,7 @@ class TamuController extends Controller
                             </div>
                             <div class="col-2 mt-4">
                                 <a href="' . route('tamu.detail', $row->id) . '" class="btn btn-primary">Detail</a>
-                                <a href="" class="btn btn-success">Add Cart</a>
+                                <!-- <a href="" class="btn btn-success">Add Cart</a> -->
                             </div>
                         </div>
                     </div>';

@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Penjualan extends Model
+class PembelianItem extends Model
 {
     use HasFactory;
-    protected $table = 'penjualan';
+    public $timestamps = false;
+    protected $table = 'pembelian_item';
     protected $fillable = [
         'no_penjualan',
-        'id_pelanggan',
-        'uang_bayar',
-        'diskon',
-        'total',
-        'kembalian',
-        'keterangan',
-        'id_user',
+        'id_barang',
+        'jumlah',
+        'harga'
     ];
 }

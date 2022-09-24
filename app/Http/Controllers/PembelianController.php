@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Pembelian;
+use App\Models\PembelianItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PembelianController extends Controller
 {
@@ -12,10 +15,12 @@ class PembelianController extends Controller
     {
         $judul = 'Pembelian';
         $supplier = DB::table('supplier')->get();
-        return view('admin.pembelian.list', compact('judul', 'supplier'));
+        $barang = DB::table('barang')->get();
+        return view('admin.pembelian.list', compact('judul', 'supplier', 'barang'));
     }
     public function tambah(Request $request)
     {
+        $harga = preg_replace('/[,]/', '', $request->harga);
         $barang = Barang::findOrFail($request->id);
         $pembelian = session()->get('pembelian', []);
         if (isset($pembelian[$request->id])) {
@@ -23,9 +28,9 @@ class PembelianController extends Controller
         } else {
             $pembelian[$request->id] = [
                 'id' => $barang->id,
-                'nama' => $request->nama,
+                'nama' => $barang->nama_barang,
                 'jumlah' => $request->jumlah,
-                'harga' => $request->harga
+                'harga' => $harga
             ];
         }
         session()->put('pembelian', $pembelian);
@@ -69,5 +74,32 @@ class PembelianController extends Controller
         } elseif ($request->jumlah < 1) {
             session()->flash('error', 'Barang Tidak boleh kurang dari 1');
         }
+    }
+    public function simpan(Request $request){
+        $total = preg_replace('/[,]/', '', $request->total);
+        $transaksi = Pembelian::create([
+            'id_supplier' => $request->supplier,
+            'total' => $total,
+            'id_user' => Auth::user()->id,
+        ]);
+
+        foreach (session('pembelian') as $p) {
+            PembelianItem::create([
+                'no_transaksi' => $transaksi,
+                'id_barang' => $p['id'],
+                'jumlah' => $p['jumlah'],
+                'harga' => $p['jumlah']
+            ]);
+
+            //updatestock
+            $data = Barang::find($p['id']);
+            $stock = $data->stock + $p['jumlah'];
+            Barang::where('id', $data->id)->update([
+                'stock' => $stock
+            ]);
+
+            session()->forget('pembelian');
+            return redirect()->route('pembelian.index')->with('success','Pembelian tersimpan');
+        }   
     }
 }

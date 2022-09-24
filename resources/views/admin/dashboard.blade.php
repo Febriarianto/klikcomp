@@ -8,8 +8,6 @@
     <title>{{$judul}}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset ('plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset ('dist/css/adminlte.min.css')}}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset ('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Toastr -->
@@ -17,6 +15,8 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="{{asset ('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     @yield('css')
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset ('dist/css/adminlte.min.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -29,7 +29,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="" class="nav-link">{{$judul}}</a>
+                    <a href="{{route('admin.home')}}" class="nav-link">{{$judul}}</a>
                 </li>
             </ul>
 
@@ -106,7 +106,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="" class="brand-link">
-                <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="{{ asset('image/user.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Klik Comp</span>
             </a>
 
@@ -137,7 +137,7 @@
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong></strong>
         </footer>
     </div>
     <!-- ./wrapper -->

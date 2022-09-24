@@ -16,6 +16,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>Kode Barang</th>
                     <th>Nama Barang</th>
                     <th>satuan</th>
                     <th>Harga Beli</th>
@@ -180,6 +181,10 @@
             serverSide: true,
             ajax: "{{ route('barang.index') }}",
             columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
                     data: 'nama_barang',
                     name: 'nama_barang'
                 },

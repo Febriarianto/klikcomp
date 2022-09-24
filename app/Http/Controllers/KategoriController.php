@@ -7,6 +7,10 @@ use App\Models\Kategori;
 
 class KategoriController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('user-access:admin');
+    }
     public function index()
     {
         $judul = 'Kategori';

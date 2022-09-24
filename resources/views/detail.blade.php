@@ -39,7 +39,7 @@
                             <div class="sizes mt-5">
                                 <h6 class="text-uppercase"></h6> <label class="radio"></label>
                             </div>
-                            <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button></div>
+                            <!-- <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button></div> -->
                         </div>
                     </div>
                 </div>
